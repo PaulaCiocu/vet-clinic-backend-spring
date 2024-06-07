@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -35,26 +36,21 @@ public class AppointmentController {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/filter")
     public Page<AppointmentProjection> getFilteredAppointments(
-            @RequestParam(required = false) String filter,
+            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) String animalName,
+            @RequestParam(required = false) String doctorName,
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) String diagnosis,
+            @RequestParam(required = false) Double totalCost,
+            @RequestParam(required = false) String appointmentDateTime,
             @PageableDefault(size = 5, sort = "appointmentDateTime", direction = Sort.Direction.DESC) Pageable pageable) {
-        return appointmentService.getFilteredAppointments(filter, pageable);
+
+        Status appointmentStatus = null;
+        if (status != null && !status.isEmpty()) {
+            appointmentStatus = Status.valueOf(status.toUpperCase());
+        }
+        return appointmentService.getFilteredAppointments(animalName, doctorName, appointmentStatus, diagnosis, totalCost , id, appointmentDateTime, pageable);
     }
-//    @GetMapping("/filter")
-//    public Page<AppointmentProjection> getFilteredAppointments(
-//            @RequestParam(required = false) String animalName,
-//            @RequestParam(required = false) String doctorName,
-//            @RequestParam(required = false) String status,
-//            @RequestParam(required = false) String diagnosis,
-//            @RequestParam(required = false) Double totalCost,
-//            @RequestParam(required = false) String appointmentDateTime,
-//            @PageableDefault(size = 5, sort = "appointmentDateTime", direction = Sort.Direction.DESC) Pageable pageable) {
-//
-//        Status appointmentStatus = null;
-//        if (status != null && !status.isEmpty()) {
-//            appointmentStatus = Status.valueOf(status.toUpperCase());
-//        }
-//        return appointmentService.getFilteredAppointments(animalName, doctorName, appointmentStatus, diagnosis, totalCost, appointmentDateTime, pageable);
-//    }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping

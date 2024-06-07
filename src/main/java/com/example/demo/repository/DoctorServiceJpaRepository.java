@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface DoctorServiceJpaRepository extends JpaRepository<DoctorService, Long> {
     List<DoctorService> findAll();
-    List<DoctorService> findAllById(Long id);
+
 }

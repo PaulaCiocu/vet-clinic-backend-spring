@@ -4,13 +4,16 @@ import com.example.demo.repository.AppointmentJpaRepository;
 import com.example.demo.repository.DoctorServiceJpaRepository;
 import com.example.demo.entity.*;
 import jakarta.annotation.PostConstruct;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AppointmentService {
@@ -51,10 +54,26 @@ public class AppointmentService {
         return appointmentJpaRepository.findAllProjectedBy(pageable);
     }
 
-    public Page<AppointmentProjection> getFilteredAppointments(String filter, Pageable pageable) {
-        return appointmentJpaRepository.findFilteredAppointments(filter, pageable);
-    }
 
+    public Page<AppointmentProjection> getFilteredAppointments(
+            String animalName,
+            String doctorName,
+            Status status,
+            String diagnosis,
+            Double totalCost,
+            Long id,
+            String appointmentDateTime,
+            Pageable pageable) {
+        return appointmentJpaRepository.findFilteredAppointments(
+                animalName,
+                doctorName,
+                status,
+                diagnosis,
+                totalCost,
+                id,
+                appointmentDateTime,
+                pageable);
+    }
 
     @Transactional
     public Long saveAppointment(AppointmentDTO appointmentDTO) {
@@ -100,6 +119,8 @@ public class AppointmentService {
         appointmentJpaRepository.save(appointment);
         return appointment.getId();
     }
+
+
 
 
 }
