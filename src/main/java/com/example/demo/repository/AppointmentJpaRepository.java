@@ -23,7 +23,8 @@ public interface AppointmentJpaRepository extends JpaRepository<Appointment, Lon
             "a.diagnosis as diagnosis, " +
             "a.status as status, " +
             "a.totalCost as totalCost, " +
-            "a.id as id "+
+            "a.id as id, " +
+            "a.serviceIds as serviceIds " + // Include serviceIds
             "FROM Appointment a " +
             "WHERE (:doctorName IS NULL OR a.doctorName = :doctorName) " +
             "AND (:animalName IS NULL OR a.animalName = :animalName) " +
@@ -41,4 +42,5 @@ public interface AppointmentJpaRepository extends JpaRepository<Appointment, Lon
             @Param("id") Long id,
             @Param("appointmentDateTime") String appointmentDateTime,
             Pageable pageable);
+
 }

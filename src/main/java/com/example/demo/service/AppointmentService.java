@@ -30,22 +30,29 @@ public class AppointmentService {
     public void init() {
         // Example doctor services
         // Example doctor services
-        DoctorService service1 = new DoctorService("Consultation", 80.0);
-        DoctorService service2 = new DoctorService("Vaccination", 40.0);
-        DoctorService service3 = new DoctorService("Surgery", 120.0);
-        DoctorService service4 = new DoctorService("Dental Cleaning", 60.0);
-        DoctorService service5 = new DoctorService("Microchipping", 30.0);
-        DoctorService service6 = new DoctorService("X-ray", 100.0);
-        doctorServiceJpaRepository.saveAll(List.of(service1, service2, service3, service4, service5, service6));
+        if(doctorServiceJpaRepository.count() == 0) {
+            DoctorService service1 = new DoctorService("Consultation", 80.0);
+            DoctorService service2 = new DoctorService("Vaccination", 40.0);
+            DoctorService service3 = new DoctorService("Surgery", 120.0);
+            DoctorService service4 = new DoctorService("Dental Cleaning", 60.0);
+            DoctorService service5 = new DoctorService("Microchipping", 30.0);
+            DoctorService service6 = new DoctorService("X-ray", 100.0);
+            doctorServiceJpaRepository.saveAll(List.of(service1, service2, service3, service4, service5, service6));
 
-        appointmentJpaRepository.saveAll(List.of(
-                new Appointment("Buddy", LocalDateTime.now().minusDays(1), "Dr. Smith", List.of(service2), "", Status.CREATED, 50.0, List.of(service2.getId())),
-                new Appointment("Milo", LocalDateTime.now().minusDays(2), "Dr. Brown", List.of(service1), "Vaccinated", Status.COMPLETED, 30.0, List.of(service1.getId())),
-                new Appointment("Bella", LocalDateTime.now().minusDays(3), "Dr. White", List.of(service3), "", Status.COMPLETED, 150.0, List.of(service3.getId())),
-                new Appointment("Lucy", LocalDateTime.now().minusDays(4), "Dr. Johnson", List.of(service2, service1), "Healthy", Status.CONFIRMED, 80.0, List.of(service2.getId(), service1.getId())),
-                new Appointment("Max", LocalDateTime.now().minusDays(5), "Dr. Black", List.of(service3), "Recovered", Status.COMPLETED, 150.0, List.of(service3.getId())),
-                new Appointment("Charlie", LocalDateTime.now().minusDays(6), "Dr. Green", List.of(service2), "", Status.CREATED, 50.0, List.of(service2.getId()))
-        ));
+            if(appointmentJpaRepository.count() == 0) {
+                appointmentJpaRepository.saveAll(List.of(
+                        new Appointment("Buddy", LocalDateTime.now().minusDays(1), "Dr. Smith", List.of(service2), "", Status.CREATED, 50.0, List.of(service2.getId())),
+                        new Appointment("Milo", LocalDateTime.now().minusDays(2), "Dr. Brown", List.of(service1), "Vaccinated", Status.COMPLETED, 30.0, List.of(service1.getId())),
+                        new Appointment("Bella", LocalDateTime.now().minusDays(3), "Dr. White", List.of(service3), "", Status.COMPLETED, 150.0, List.of(service3.getId())),
+                        // new Appointment("Lucy", LocalDateTime.now().minusDays(4), "Dr. Johnson", List.of(service2), "Healthy", Status.CONFIRMED, 80.0, List.of(service2.getId(), service1.getId())),
+                        new Appointment("Max", LocalDateTime.now().minusDays(5), "Dr. Black", List.of(service3), "Recovered", Status.COMPLETED, 150.0, List.of(service3.getId())),
+                        new Appointment("Charlie", LocalDateTime.now().minusDays(6), "Dr. Green", List.of(service2), "", Status.CREATED, 50.0, List.of(service2.getId()))
+                ));
+            }
+        }
+
+
+
 
 
     }

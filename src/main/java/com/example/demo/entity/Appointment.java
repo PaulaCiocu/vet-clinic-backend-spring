@@ -2,12 +2,9 @@ package com.example.demo.entity;
 
 
 import jakarta.persistence.*;
-import jdk.jshell.Snippet;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Table(name = "appointment")
@@ -25,6 +22,7 @@ public class Appointment {
             inverseJoinColumns = @JoinColumn(name = "doctor_service_id"))
     private List<DoctorService> doctorService;
 
+
     private String diagnosis;
 
     @ElementCollection
@@ -33,7 +31,6 @@ public class Appointment {
     @Enumerated(EnumType.STRING)
     private Status status;
     private Double totalCost;
-
 
     public Appointment() {
     }
