@@ -3,6 +3,8 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -17,6 +19,25 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "savedSearchUsers",
+            joinColumns = @JoinColumn(name = "users_id"),
+            inverseJoinColumns = @JoinColumn(name = "savedSearch_id"))
+    private List<SavedSearch> savedSearches;
+
+    @ElementCollection
+    private List<Long> savesIds; // List of selected service IDs
+
+
+    public List<SavedSearch> getSavedSearches() {
+        return savedSearches;
+    }
+
+    public void setSavedSearches(List<SavedSearch> savedSearches) {
+        this.savedSearches = savedSearches;
+    }
 
     public User() {}
     public User(String username, String password) {

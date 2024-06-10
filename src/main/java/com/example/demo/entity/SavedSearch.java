@@ -25,14 +25,22 @@ public class SavedSearch {
     @ElementCollection
     private List<ColumnVisibility> columnVisibility;
 
+    private Long userID;
 
+    public Long getUserID() {
+        return userID;
+    }
 
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
 
-    public SavedSearch(String name, List<FilterKey> filterKeys, List<SortCriteria> sortCriteria, List<ColumnVisibility> columnVisibility) {
+    public SavedSearch(String name, List<FilterKey> filterKeys, List<SortCriteria> sortCriteria, List<ColumnVisibility> columnVisibility, Long userID) {
         this.name = name;
         this.filterKeys = filterKeys;
         this.sortCriteria = sortCriteria;
         this.columnVisibility = columnVisibility;
+        this.userID = userID;
     }
 
     public SavedSearch() {}

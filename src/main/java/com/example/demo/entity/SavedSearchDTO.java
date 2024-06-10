@@ -11,14 +11,23 @@ public class SavedSearchDTO {
     private List<FilterKey> filterKeys;
     private List<SortCriteria> sortCriteria;
     private List<ColumnVisibility> columnVisibility;
+    private Long userID;
 
+    public Long getUserID() {
+        return userID;
+    }
 
-    public SavedSearchDTO(Long id, String name, List<FilterKey> filterKeys, List<SortCriteria> sortCriteria, List<ColumnVisibility> columnVisibility) {
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
+
+    public SavedSearchDTO(Long id, String name, List<FilterKey> filterKeys, List<SortCriteria> sortCriteria, List<ColumnVisibility> columnVisibility, Long userID) {
         this.id = id;
         this.name = name;
         this.filterKeys = filterKeys;
         this.sortCriteria = sortCriteria;
         this.columnVisibility = columnVisibility;
+        this.userID = userID;
     }
     public SavedSearchDTO() {}
 

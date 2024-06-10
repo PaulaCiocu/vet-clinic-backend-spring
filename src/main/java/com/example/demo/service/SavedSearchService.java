@@ -41,6 +41,7 @@ public class SavedSearchService {
                     new ColumnVisibility("totalCost", true),
                     new ColumnVisibility("status", true)
             ));
+            search1.setUserID(1L);
 
             SavedSearch search2 = new SavedSearch();
             search2.setName("Programari inchise");
@@ -58,6 +59,7 @@ public class SavedSearchService {
                     new ColumnVisibility("totalCost", true),
                     new ColumnVisibility("status", true)
             ));
+            search2.setUserID(2L);
 
             savedSearchJpaRepository.saveAll(List.of(search1, search2));
         }
@@ -74,7 +76,8 @@ public class SavedSearchService {
                 savedSearchDTO.getName(),
                 savedSearchDTO.getFilterKeys(),
                 savedSearchDTO.getSortCriteria(),
-                savedSearchDTO.getColumnVisibility()
+                savedSearchDTO.getColumnVisibility(),
+                savedSearchDTO.getUserID()
         );
         savedSearchJpaRepository.save(savedSearch);
         return savedSearch.getId();
