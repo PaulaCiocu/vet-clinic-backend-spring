@@ -1,11 +1,11 @@
 Vet Clinic Java/Spring/JPA
 
 - appointment : tabelul pentru programari : 
--id
-- nume animal
-- data
-- nume doctor 
-- service ids ( o lista cu id-urile tuturor serviciilor)
+                                -id
+                                - nume animal
+                                - data
+                                - nume doctor 
+                                - service ids ( o lista cu id-urile tuturor serviciilor)
 - appointment service : - init() - initializeaza 5 programri si 6 servicii 
                                 - getFilteredAppointments returneaza programarile in functie de filtru
                                 - getAllAppointments returneaza toate programarile
