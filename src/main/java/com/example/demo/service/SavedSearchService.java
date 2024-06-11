@@ -77,7 +77,8 @@ public class SavedSearchService {
                 savedSearchDTO.getFilterKeys(),
                 savedSearchDTO.getSortCriteria(),
                 savedSearchDTO.getColumnVisibility(),
-                savedSearchDTO.getUserID()
+                savedSearchDTO.getUserID(),
+                savedSearchDTO.getPageNumber()
         );
         savedSearchJpaRepository.save(savedSearch);
         return savedSearch.getId();

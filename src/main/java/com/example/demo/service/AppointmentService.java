@@ -128,6 +128,7 @@ public class AppointmentService {
     }
 
 
-
-
+    public List<Appointment> getAllAppointments() {
+        return appointmentJpaRepository.findAll();
+    }
 }

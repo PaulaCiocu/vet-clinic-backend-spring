@@ -25,6 +25,16 @@ public class SavedSearch {
     @ElementCollection
     private List<ColumnVisibility> columnVisibility;
 
+    private Long pageNumber;
+
+    public Long getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
     private Long userID;
 
     public Long getUserID() {
@@ -35,12 +45,13 @@ public class SavedSearch {
         this.userID = userID;
     }
 
-    public SavedSearch(String name, List<FilterKey> filterKeys, List<SortCriteria> sortCriteria, List<ColumnVisibility> columnVisibility, Long userID) {
+    public SavedSearch(String name, List<FilterKey> filterKeys, List<SortCriteria> sortCriteria, List<ColumnVisibility> columnVisibility, Long userID, Long pageNumber) {
         this.name = name;
         this.filterKeys = filterKeys;
         this.sortCriteria = sortCriteria;
         this.columnVisibility = columnVisibility;
         this.userID = userID;
+        this.pageNumber = pageNumber;
     }
 
     public SavedSearch() {}

@@ -14,10 +14,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String password;
 
 
@@ -26,9 +26,6 @@ public class User {
             joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name = "savedSearch_id"))
     private List<SavedSearch> savedSearches;
-
-    @ElementCollection
-    private List<Long> savesIds; // List of selected service IDs
 
 
     public List<SavedSearch> getSavedSearches() {

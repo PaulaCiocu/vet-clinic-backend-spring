@@ -13,6 +13,16 @@ public class SavedSearchDTO {
     private List<ColumnVisibility> columnVisibility;
     private Long userID;
 
+    public Long getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(Long pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    private Long pageNumber;
+
     public Long getUserID() {
         return userID;
     }

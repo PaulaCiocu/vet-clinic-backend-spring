@@ -20,10 +20,12 @@ public class UserService {
 
     @PostConstruct
     public void init() {
-        User user1 = new User("John", "password123");
-        User user2 = new User("Jane", "password456");
-        userJpaRepository.save(user1);
-        userJpaRepository.save(user2);
+        if(userJpaRepository.count() == 0) {
+            User user1 = new User("John", "password123");
+            User user2 = new User("Jane", "password456");
+            userJpaRepository.save(user1);
+            userJpaRepository.save(user2);
+        }
     }
 
     public List<User> getUser() {

@@ -29,8 +29,14 @@ public class AppointmentController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
-    public Page<AppointmentProjection> getAllAppointments(@PageableDefault(size = 5, sort = "appointmentDateTime", direction = Sort.Direction.DESC) Pageable pageable) {
+    public Page<AppointmentProjection> getAppointments(@PageableDefault(size = 5, sort = "appointmentDateTime", direction = Sort.Direction.DESC) Pageable pageable) {
         return appointmentService.getAppointments(pageable);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/all")
+    public List<Appointment> getAllAppointments(){
+        return appointmentService.getAllAppointments();
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
